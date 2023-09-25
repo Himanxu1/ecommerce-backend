@@ -1,27 +1,28 @@
-name: Pull Request Checks
+name: ESLint and Prettier Checks
 
 on:
-  pull_request:
+  push:
     branches:
-      - main
+      - master 
 
- jobs:
-  build:
+jobs:
+  eslint-prettier-checks:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: "14"
+          node-version: "14"  # Replace with your desired Node.js version
+
+      - name: Install Dependencies
+        run: npm install  
 
       - name: Run ESLint
         run: eslint .
 
-      - name: Run Prettier
+      - name: Run Prettier Check
         run: prettier --check "src/**/*.js"
-     
-
