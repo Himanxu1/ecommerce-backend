@@ -22,7 +22,7 @@ jobs:
         run: npm install  
 
       - name: Run ESLint
-        run: eslint .
+        run: npx eslint .
 
       - name: Run Prettier Check
         run: prettier --check "src/**/*.js"
