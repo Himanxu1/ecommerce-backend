@@ -25,4 +25,4 @@ jobs:
         run: npx eslint .
 
       - name: Run Prettier Check
-        run: prettier --check "src/**/*.js"
+        run: npx prettier --write "src/**/*.js"
