@@ -5,13 +5,11 @@ async function deleteProduct(req, res) {
     const deletedProduct = await productModel.findOneAndDelete({
       productid: req.query.id,
     });
-    return res
-      .status(200)
-      .send({
-        code: 200,
-        message: 'deleted success',
-        deletedProduct: deletedProduct,
-      });
+    return res.status(200).send({
+      code: 200,
+      message: 'deleted success',
+      deletedProduct: deletedProduct,
+    });
   } catch (error) {
     console.log(error);
     return res
