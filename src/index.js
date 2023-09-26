@@ -19,7 +19,7 @@ app.use('/api/cart', cartRoute);
 app.use('/api/auth', authRoute);
 app.use('/api/wishlist', wishlistRoute);
 
-app.get('/api', (res) => {
+app.get('/api', (req,res) => {
   res.send('Api Working!');
 });
 
