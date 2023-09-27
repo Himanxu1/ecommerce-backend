@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 // Sign-up endpoint
 async function signup(req, res) {
   try {
-    const { username, password } = req.body;
+    const { username, password,role } = req.body;
 
     // Check if the username is already taken
     const existingUser = await User.findOne({ username });
@@ -13,7 +13,7 @@ async function signup(req, res) {
     }
 
     // Create a new user
-    const newUser = new User({ username, password });
+    const newUser = new User({ username, password,role });
 
     // Save the user to the database
     await newUser.save();

@@ -1,18 +1,20 @@
 const express = require('express');
 const router = express.Router();
+const checkrole = require('../../middleware/checkrole')
 
 const getAllProduct = require('./services/getProducts');
 const saveProduct = require('./services/saveProduct');
 const getbyid = require('../product/services/getById');
 const deleteProduct = require('../product/services/deleteProduct');
 
+
 // get commented ideas
-router.get('/get-all', async (req, res) => {
+router.get('/get-all',async (req, res) => {
   await getAllProduct(req, res);
 });
 
 // add product
-router.post('/save', async (req, res) => {
+router.post('/save', checkrole('admin'),async (req, res) => {
   await saveProduct(req, res);
 });
 
@@ -22,7 +24,7 @@ router.get('/', async (req, res) => {
 });
 
 //   delete by id
-router.delete('/', async (req, res) => {
+router.delete('/', checkrole('admin'),async (req, res) => {
   await deleteProduct(req, res);
 });
 

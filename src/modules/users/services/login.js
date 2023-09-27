@@ -22,9 +22,9 @@ async function login(req, res) {
 
     // Create a JWT token for the user
     // eslint-disable-next-line no-undef
-    const token = jwt.sign({ username: user.username }, process.env.SECRET_KEY);
+    const token = jwt.sign({ username: user.username, role: user.role  }, process.env.SECRET_KEY);
     const sucess = 'login success';
-    res.status(200).json({ token, sucess });
+    res.status(200).json({ token, sucess, role: user.role });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal server error' });
