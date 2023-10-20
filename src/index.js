@@ -2,22 +2,24 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const app = express();
 
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(cors());
+app.use(cookieParser())
 
 require('./config/database').connect();
 const productRoute = require('./modules/product/router');
-const cartRoute = require('./modules/cart/router');
 const authRoute = require('./modules/users/router');
 const wishlistRoute = require('./modules/wishlist/router');
+const paymentRoute = require('./modules/payment/router');
 
 app.use('/api/products', productRoute);
-app.use('/api/cart', cartRoute);
 app.use('/api/auth', authRoute);
 app.use('/api/wishlist', wishlistRoute);
+app.use('/api/payment', paymentRoute);
 
 app.get('/api', (req,res) => {
   res.send('Api Working!');

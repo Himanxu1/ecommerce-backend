@@ -8,13 +8,14 @@ const getbyid = require('../product/services/getById');
 const deleteProduct = require('../product/services/deleteProduct');
 
 
+
 // get commented ideas
 router.get('/get-all',async (req, res) => {
   await getAllProduct(req, res);
 });
 
 // add product
-router.post('/save', checkrole('admin'),async (req, res) => {
+router.post('/save',async (req, res) => {
   await saveProduct(req, res);
 });
 

@@ -12,6 +12,7 @@ const productsModel = new Schema(
       type: [String],
       default: [],
     },
+   quantity:{type:Number,default:1},
   },
   {
     timestamps: true,

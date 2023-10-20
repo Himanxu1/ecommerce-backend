@@ -1,7 +1,7 @@
 const productsModel = require('../model');
 
 async function saveProduct(req, res) {
-  console.log(req.body.subImg);
+ 
   try {
     const product = new productsModel({
       productid: req.body.productid,
@@ -12,9 +12,9 @@ async function saveProduct(req, res) {
       subImg: req.body.subImg,
     });
     const newProduct = await product.save();
-    console.log(newProduct);
-
-    return res.status(200).send({ code: 200, message: 'product added' });
+    
+    
+    return res.status(200).send({ code: 200, message: 'product added',product:newProduct });
   } catch (error) {
     console.log(error);
     return res

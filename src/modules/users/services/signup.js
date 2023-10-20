@@ -1,32 +1,23 @@
 const User = require('../model');
-const jwt = require('jsonwebtoken');
 
 // Sign-up endpoint
 async function signup(req, res) {
   try {
-    const { username, password,role } = req.body;
+    const { username, password,email } = req.body;
 
     // Check if the username is already taken
-    const existingUser = await User.findOne({ username });
+    const existingUser = await User.findOne({ email });
     if (existingUser) {
-      return res.status(400).json({ message: 'Username already exists' });
+      return res.status(400).json({ message: 'Email already exists' });
     }
 
     // Create a new user
-    const newUser = new User({ username, password,role });
+    const newUser = new User({ username, password,email });
 
     // Save the user to the database
     await newUser.save();
-
-    // Create a JWT token for the user
-    // eslint-disable-next-line no-undef
-    const token = jwt.sign(
-      { username: newUser.username },
-      // eslint-disable-next-line no-undef
-      process.env.SECRET_KEY,
-    );
     const sucess = 'sign up sucess';
-    res.status(201).json({ token, sucess });
+    res.status(201).json({ sucess });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal server error' });
