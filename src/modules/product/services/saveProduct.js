@@ -1,10 +1,10 @@
 const productsModel = require('../model');
+const { v4: uuidv4 } = require('uuid');
 
 async function saveProduct(req, res) {
- 
   try {
     const product = new productsModel({
-      productid: req.body.productid,
+      productid: uuidv4(),
       name: req.body.name,
       price: req.body.price,
       description: req.body.description,
@@ -12,8 +12,6 @@ async function saveProduct(req, res) {
       subImg: req.body.subImg,
     });
     const newProduct = await product.save();
-    
-    
     return res.status(200).send({ code: 200, message: 'product added',product:newProduct });
   } catch (error) {
     console.log(error);

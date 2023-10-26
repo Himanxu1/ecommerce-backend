@@ -3,10 +3,12 @@ const User =require('../modules/users/model')
 
 const authenticate =  async (req,res,next)=>{
    try{
-   const token = req.cookies.jwttoken;
+      const token = req.header('x-auth-token');
+
    // eslint-disable-next-line no-undef
    const verifyToken = jwt.verify(token,process.env.SECRET_KEY);
-   const rootUser = await User.findOne({_id:verifyToken._id});
+
+   const rootUser = await User.findOne({_id:verifyToken.user.id});
    if(!rootUser) {
     throw new Error('User not Found')
    }
@@ -21,4 +23,4 @@ const authenticate =  async (req,res,next)=>{
    }
 }
 
-module.export = authenticate
+module.exports = authenticate

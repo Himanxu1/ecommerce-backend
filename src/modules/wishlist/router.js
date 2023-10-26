@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-
 const addWishlist = require('./services/addWishlist');
 const removeWishlist = require('./services/removeWishlist');
 const getWishlist = require('../wishlist/services/getWishlist');
