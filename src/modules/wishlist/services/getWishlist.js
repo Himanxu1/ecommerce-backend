@@ -21,13 +21,11 @@ async function getWishlist(req, res) {
       }
     }
 
-    return res
-      .status(200)
-      .send({
-        code: 200,
-        message: 'fetched wishlist',
-        wishlist: allWishlistItems,
-      });
+    return res.status(200).send({
+      code: 200,
+      message: 'fetched wishlist',
+      wishlist: allWishlistItems,
+    });
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: 'Internal server error' });

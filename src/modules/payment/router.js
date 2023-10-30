@@ -10,9 +10,8 @@ router.post('/order',async (req, res) => {
 });
 
 //order success
-router.post('/success',async (req, res) => {
-    await successOrder(req, res);
-  });
-
+router.post('/success', async (req, res) => {
+  await successOrder(req, res);
+});
 
 module.exports = router;

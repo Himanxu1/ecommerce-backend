@@ -1,4 +1,5 @@
 require('dotenv').config();
+require('newrelic');
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -8,20 +9,22 @@ const app = express();
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(cors());
-app.use(cookieParser())
+app.use(cookieParser());
 
 require('./config/database').connect();
 const productRoute = require('./modules/product/router');
 const authRoute = require('./modules/users/router');
 const wishlistRoute = require('./modules/wishlist/router');
 const paymentRoute = require('./modules/payment/router');
+const orderRoute = require('./modules/order/router');
 
 app.use('/api/products', productRoute);
 app.use('/api/auth', authRoute);
 app.use('/api/wishlist', wishlistRoute);
 app.use('/api/payment', paymentRoute);
+app.use('/api/order', orderRoute);
 
-app.get('/api', (req,res) => {
+app.get('/api', (req, res) => {
   res.send('Api Working!');
 });
 
