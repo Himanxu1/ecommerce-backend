@@ -7,7 +7,6 @@ const authenticate = async (req, res, next) => {
 
     // eslint-disable-next-line no-undef
     const verifyToken = jwt.verify(token, process.env.SECRET_KEY);
-
     const rootUser = await User.findOne({ _id: verifyToken.user.id });
     if (!rootUser) {
       throw new Error('User not Found');
