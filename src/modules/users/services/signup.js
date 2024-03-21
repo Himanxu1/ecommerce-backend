@@ -22,7 +22,7 @@ async function signup(req, res) {
 
     // Save the user to the database
     await newUser.save();
-    const sucess = 'sign up sucess';
+    const sucess = 'sign up success';
     res.status(201).json({ sucess });
   } catch (error) {
     console.error(error);
